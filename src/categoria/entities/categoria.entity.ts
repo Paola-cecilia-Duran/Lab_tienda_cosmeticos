@@ -1,4 +1,4 @@
-
+import { ProductoEntity } from "src/producto/entities/producto.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
@@ -25,4 +25,7 @@ export class CategoriaEntity {
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
 
+@ManyToOne(() => ProductoEntity, (producto) => producto.categoria)
+@JoinColumn({name: 'id_producto', referencedColumnName: 'id'})
+producto: ProductoEntity;
 }

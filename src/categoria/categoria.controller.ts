@@ -12,7 +12,7 @@ export class CategoriaController {
 
   @Post()
   @ApiCreatedResponse({ type: CategoriaEntity })
-  @ApiOperation({ summary: 'Crea un nuevo categoria'})
+  @ApiOperation({ summary: 'Crea una nueva categoria'})
   create(@Body() createCategoriaDto: CreateCategoriaDto) {
     return this.categoriaService.create(createCategoriaDto);
   }
@@ -26,21 +26,21 @@ export class CategoriaController {
 
   @Get(':id')
   @ApiOkResponse({ type: CategoriaEntity })
-  @ApiOperation({ summary: 'Obtiene un intérprete con base al identificador'})
+  @ApiOperation({ summary: 'Obtiene una categoria con base al identificador'})
   findOne(@Param('id') id: string) {
     return this.categoriaService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: CategoriaEntity })
-  @ApiOperation({ summary: 'Actualiza los datos de un intérprete con base al identificador'})
+  @ApiOperation({ summary: 'Actualiza los datos de una categoria con base al identificador'})
   update(@Param('id') id: string, @Body() updateCategoriaDto: UpdateCategoriaDto) {
     return this.categoriaService.update(+id, updateCategoriaDto);
   }
 
   @Delete(':id')
   @ApiOkResponse()
-  @ApiOperation({ summary: 'Elimina un intérprete con base al identificador'})
+  @ApiOperation({ summary: 'Elimina una categoria con base al identificador'})
   remove(@Param('id') id: string) {
     return this.categoriaService.remove(+id);
   }
