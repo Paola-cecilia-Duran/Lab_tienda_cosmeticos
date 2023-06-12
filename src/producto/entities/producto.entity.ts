@@ -1,4 +1,5 @@
 import { CategoriaEntity } from "src/categoria/entities/categoria.entity";
+import { VentaEntity } from "src/venta/entities/venta.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
@@ -9,13 +10,19 @@ export class ProductoEntity {
   id: number;
 
   @Column({ length: 100 })
-  nombre: string;
+  nombreArticulo: string;
 
   @Column({ length: 30 })
   marca: string;
 
   @Column({ length: 100 })
   precio: string;
+
+  @Column()
+  stock: boolean;
+  
+  @Column( {length: 500})
+  descripcion: string;
 
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
@@ -25,6 +32,9 @@ export class ProductoEntity {
 
    @OneToMany(() => CategoriaEntity, categoria => categoria.producto)
    categoria: CategoriaEntity[];
+
+   @OneToMany(() => VentaEntity, venta => venta.producto)
+   venta: VentaEntity[];
 
 
 }

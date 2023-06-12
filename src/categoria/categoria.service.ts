@@ -14,25 +14,25 @@ export class CategoriaService {
     private categoriaRepository: Repository<CategoriaEntity>,
   ) {}
 
-  async create(CreateCategoriaDto: CreateCategoriaDto): Promise<CategoriaEntity> {
+  async create(createCategoriaDto: CreateCategoriaDto): Promise<CategoriaEntity> {
     const existe = await this.categoriaRepository.findOneBy({
-      idProducto: CreateCategoriaDto.idProducto,
-      nombre: CreateCategoriaDto.nombre.trim(),
-      descripcion: CreateCategoriaDto.descripcion.trim(),
+      idProducto: createCategoriaDto.idProducto,
+      nombre: createCategoriaDto.nombre.trim(),
+      descripcion: createCategoriaDto.descripcion.trim(),
 
     });
 
     if (existe) {
       throw new ConflictException(
-        `la categoria ${CreateCategoriaDto.nombre} ya existe para el producto.`,
+        `la categoria ${createCategoriaDto.nombre} ya existe para el producto.`,
       );
     }
 
     return this.categoriaRepository.save({
-      idProducto: CreateCategoriaDto.idProducto,
-      nombre: CreateCategoriaDto.nombre.trim(),
-      descripcion: CreateCategoriaDto.descripcion.trim(),
-      fechaLanzamiento: CreateCategoriaDto.fechaLanzamiento,
+      idProducto: createCategoriaDto.idProducto,
+      nombre: createCategoriaDto.nombre.trim(),
+      descripcion: createCategoriaDto.descripcion.trim(),
+      fechaLanzamiento: createCategoriaDto.fechaLanzamiento,
     });
   }
 

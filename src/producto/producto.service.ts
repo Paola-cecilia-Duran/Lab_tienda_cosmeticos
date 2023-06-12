@@ -16,19 +16,24 @@ export class ProductoService {
     CreateProductoDto: CreateProductoDto,
   ): Promise<ProductoEntity> {
     const existe = await this.productoRepository.findOneBy({
-      nombre: CreateProductoDto.nombre.trim(),
+
+      nombreArticulo: CreateProductoDto.nombreArticulo.trim(),
       marca: CreateProductoDto.marca.trim(),
       precio: CreateProductoDto.precio.trim(),
+      descripcion: CreateProductoDto.descripcion.trim(),
     });
 
     if (existe) {
-      throw new ConflictException(`El producto ${CreateProductoDto.nombre} ya existe.`);
+      throw new ConflictException(`El producto ${CreateProductoDto.nombreArticulo} ya existe.`);
     }
 
     return this.productoRepository.save({
-      nombre: CreateProductoDto.nombre.trim(),
+  
+      nombreArticulo: CreateProductoDto.nombreArticulo.trim(),
       marca: CreateProductoDto.marca.trim(),
       precio: CreateProductoDto.precio.trim(),
+      descripcion: CreateProductoDto.descripcion.trim(),
+
     });
   }
   async findAll(): Promise<ProductoEntity[]> {
@@ -39,7 +44,7 @@ export class ProductoService {
     const producto = await this.productoRepository.findOneBy({id});
 
     if (!producto) {
-      throw new NotFoundException(`El intérprete ${id} no existe.`);
+      throw new NotFoundException(`El producto ${id} no existe.`);
     }
 
     return producto;

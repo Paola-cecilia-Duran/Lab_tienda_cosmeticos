@@ -7,7 +7,7 @@ export class CategoriaEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'id_interprete' })
+  @Column({ name: 'idProducto' })
   idProducto: number;
 
   @Column({ length: 100 })
@@ -26,6 +26,6 @@ export class CategoriaEntity {
   fechaModificacion: Date;
 
 @ManyToOne(() => ProductoEntity, (producto) => producto.categoria)
-@JoinColumn({name: 'id_producto', referencedColumnName: 'id'})
+@JoinColumn({name: 'idProducto', referencedColumnName: 'id'})
 producto: ProductoEntity;
 }
